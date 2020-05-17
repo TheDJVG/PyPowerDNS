@@ -60,7 +60,7 @@ class Zone(_BaseObject):
         'presigned': bool,
         'soa_edit': str,
         'soa_edit_api': str,
-        'api_rectify': str,
+        'api_rectify': bool,
         'zone': str,
         'account': str,
         'nameservers': list,

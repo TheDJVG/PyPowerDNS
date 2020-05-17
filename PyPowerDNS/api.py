@@ -108,12 +108,12 @@ class APIClient:
         self.delete(path)
 
     def update_zone_metadata(self, zone: Zone):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}'
         self.put(path, data=zone)
         return self.get_zone(zone.name)
 
     def patch_rrsets(self, zone: Zone):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}'
         self.patch(path, data={'rrsets': zone.rrsets})
         return self.get_zone(zone.name)
 
@@ -133,47 +133,47 @@ class APIClient:
 
     # Cryptokeys
     def get_zone_cryptokeys(self, zone: Zone):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/cryptokeys'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/cryptokeys'
         cryptkeys_new = []
         for cryptokey in self.get(path):
             cryptkeys_new.append(Cryptokey(**cryptokey))
         return cryptkeys_new
 
     def create_cryptokey(self, zone: Zone, cryptokey: Cryptokey):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/cryptokeys'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/cryptokeys'
         return self.post(path, cryptokey)
 
     def get_cryptokey(self, zone: Zone, key_id):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/cryptokeys/{key_id}'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/cryptokeys/{key_id}'
         return Cryptokey(**self.get(path))
 
     def put_cryptokey(self, zone: Zone, cryptokey: Cryptokey):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/cryptokeys/{cryptokey.id}'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/cryptokeys/{cryptokey.id}'
         self.put(path, data=cryptokey)
 
     # Metadata
     def get_zone_metadata(self, zone: Zone):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/metadata'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/metadata'
         metadata_new = []
         for metadata in self.get(path):
             metadata_new.append(Metadata(**metadata))
         return metadata_new
 
     def create_metadata(self, zone: Zone, metadata: Metadata):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/metadata'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/metadata'
         self.post(path, data=metadata)
         return self.get_zone_metadata(zone)
 
     def get_metadata(self, zone: Zone, metadata_kind):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/metadata/{metadata_kind}'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/metadata/{metadata_kind}'
         return Metadata(**self.get(path))
 
     def put_metadata(self, zone: Zone, metadata: Metadata):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/metadata/{metadata.kind}'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/metadata/{metadata.kind}'
         return Metadata(**self.put(path, data=metadata))
 
     def delete_metadata(self, zone: Zone, metadata: Metadata):
-        path = f'servers/{self.current_server.id}/zones/{zone.id}/metadata/{metadata.kind}'
+        path = f'servers/{self.current_server.id}/zones/{zone.name}/metadata/{metadata.kind}'
         self.delete(path)
 
     # TSIGKeys
