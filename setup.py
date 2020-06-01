@@ -9,7 +9,7 @@ requires = ['requests']
 
 setuptools.setup(
     name='PyPowerDNS',
-    version='2020.5.2',
+    version='2020.6.1',
     install_requires=requires,
     author="D. van Gorkum",
     author_email="djvg@djvg.net",

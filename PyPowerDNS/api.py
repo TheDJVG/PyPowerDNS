@@ -9,6 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 # TODO:
 # - Logging
 # - TSIGKeys
@@ -141,7 +142,7 @@ class APIClient:
 
     def create_cryptokey(self, zone: Zone, cryptokey: Cryptokey):
         path = f'servers/{self.current_server.id}/zones/{zone.name}/cryptokeys'
-        return self.post(path, cryptokey)
+        return self.post(path, data=cryptokey)
 
     def get_cryptokey(self, zone: Zone, key_id):
         path = f'servers/{self.current_server.id}/zones/{zone.name}/cryptokeys/{key_id}'

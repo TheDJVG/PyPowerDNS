@@ -116,19 +116,20 @@ class Comment(_BaseObject):
 class Cryptokey(_BaseObject):
     optional_fields = {
         'privatekey': str,
-        'flags': str
-    }
-
-    required_fields = {
-        'type': str,
+        'flags': str,
         'id': int,
-        'keytype': str,
-        'active': bool,
+        'type': str,
         'published': bool,
         'dnskey': str,
         'ds': list,
         'algorithm': str,
         'bits': int,
+
+    }
+
+    required_fields = {
+        'active': bool,
+        'keytype': str,
     }
 
 
